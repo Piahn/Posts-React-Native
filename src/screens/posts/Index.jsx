@@ -12,6 +12,11 @@ import React, {useState, useEffect} from 'react';
 import api from '../../services/api';
 import {BACKEND_API_URL} from '@env';
 
+/**
+ * Displays a list of posts with options to create, edit, or delete posts.
+ *
+ * Fetches posts from the backend API, shows a loading indicator while fetching, and renders each post with its image, title, and action buttons. Provides navigation to create or edit posts and displays toast notifications upon successful deletion.
+ */
 export default function PostsIndex({navigation}) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
