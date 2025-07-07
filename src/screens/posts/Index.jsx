@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   Image,
+  ToastAndroid,
 } from 'react-native';
 
 import React, {useState, useEffect} from 'react';
@@ -28,6 +29,14 @@ export default function PostsIndex({navigation}) {
   useEffect(() => {
     fetchDataPosts();
   });
+
+  const deletePost = async id => {
+    await api.delete(`/api/posts/${id}`).then(() => {
+      fetchDataPosts();
+
+      ToastAndroid.show('Post Deleted Successfully!', ToastAndroid.LONG);
+    });
+  };
 
   return (
     <>
@@ -60,7 +69,9 @@ export default function PostsIndex({navigation}) {
                   style={styles.button}>
                   <Text style={styles.buttonText}>Edit</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => {}}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => deletePost(post.id)}>
                   <Text style={styles.buttonText}>Delete</Text>
                 </TouchableOpacity>
               </View>
