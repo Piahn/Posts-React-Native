@@ -13,9 +13,12 @@ import api from '../../services/api';
 import {BACKEND_API_URL} from '@env';
 
 /**
- * Displays a list of posts with options to create, edit, or delete posts.
+ * Displays a list of posts with options to edit, delete, or create posts in a React Native app.
  *
- * Fetches posts from the backend API, shows a loading indicator while fetching, and renders each post with its image, title, and action buttons. Provides navigation to create or edit posts and displays toast notifications upon successful deletion.
+ * Fetches posts from the backend API, shows a loading indicator while fetching, and renders each post with its image and title. Provides buttons to edit or delete individual posts, and a floating button to create a new post. Displays toast notifications on successful deletion.
+ *
+ * @param {object} navigation - React Navigation prop for navigating between screens.
+ * @return {JSX.Element} The rendered posts index screen.
  */
 export default function PostsIndex({navigation}) {
   const [posts, setPosts] = useState([]);
