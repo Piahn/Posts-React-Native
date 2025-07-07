@@ -5,8 +5,8 @@ import {
   ActivityIndicator,
   TouchableOpacity,
   Image,
-  ToastAndroid,
 } from 'react-native';
+import Toast from 'react-native-toast-message';
 
 import React, {useState, useEffect} from 'react';
 import api from '../../services/api';
@@ -34,10 +34,13 @@ export default function PostsIndex({navigation}) {
     await api.delete(`/api/posts/${id}`).then(() => {
       fetchDataPosts();
 
-      ToastAndroid.show('Post Deleted Successfully!', ToastAndroid.LONG);
+      Toast.show({
+        type: 'success',
+        text1: 'Post Deleted Successfully!',
+        position: 'bottom',
+      });
     });
   };
-
   return (
     <>
       <View style={styles.container}>
@@ -86,6 +89,7 @@ export default function PostsIndex({navigation}) {
           <Text style={styles.floatingButtonText}>+</Text>
         </TouchableOpacity>
       </View>
+      <Toast />
     </>
   );
 }
